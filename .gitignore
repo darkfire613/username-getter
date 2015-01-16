@@ -1,5 +1,6 @@
 #specific files
 sublist
+userlist
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
