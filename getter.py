@@ -21,11 +21,18 @@ file.close()
 # strip newlines
 sublist = [x.strip() for x in sublist]
 
+#open file to save usernames
+f = open('userlist', 'a')
+
+
 # main loop
-while true:
+while True:
     for subname in sublist:
         subreddit = r.get_subreddit(subname)
         for submission in subreddit.get_new(limit=10):
             username = submission.author
-            print username
-    time.sleep(1800)
+            f.write(str(username) + '\n')
+    break
+    #time.sleep(1800)
+
+f.close()
