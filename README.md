@@ -6,8 +6,3 @@ This program scans the usernames of new posts to a specified subreddit, then che
 Note you will need to provide a list of subreddits to scan in a file named "sublist", one subreddit per line. Without this, the program will default to scanning /r/all. The program automatically appends /r/ so don't worry about it.
 
 The program comes in two parts: getter.py, which is a bot that continues to grab reddit usernames for as long as it's allowed to run, saving them into userlist. The second, checker.py, runs once, and scans userlist, filtering based on its rules.
-
-Why?
-----
-
-A friend of mine challenged me to find her reddit account. I managed to get a few details out of her as to the contents of her username. This bot's gonna win me a bet.
