@@ -7,7 +7,7 @@ import praw
 import time
 
 # initializes reddit api stuff
-user_agent = ("username getter 0.1 by /u/darkfire613 "
+user_agent = ("username getter 0.2 by /u/darkfire613 "
               "https://github.com/darkfire613/username-getter")
 r = praw.Reddit(user_agent = user_agent)
 
@@ -21,18 +21,30 @@ file.close()
 # strip newlines
 sublist = [x.strip() for x in sublist]
 
-#open file to save usernames
-
-
+#load placeholder placeholders
+placeholders = []
+for x in sublist:
+    placeholders.append('1bu7ak')
 
 # main loop
 while True:
+# subcount is an iterator for filling the placeholder
+    subcount = 0
     f = open('userlist', 'a')
     for subname in sublist:
         subreddit = r.get_subreddit(subname)
-        for submission in subreddit.get_new(limit=10):
+        print placeholders[subcount]
+        firstloop = True
+        for submission in subreddit.get_new(limit=5, place_holder=placeholders[subcount]):
+# circumvents inclusive place_holder issue. fix later
+            #if submission.id != placeholders[subcount]:
             username = submission.author
             f.write(str(username) + '\n')
+            if firstloop:
+                placeholders[subcount] = submission.id
+                firstloop = False
+        subcount += 1
     f.close()
-    break
-    #time.sleep(1800)
+    print placeholders
+    #break
+    time.sleep(5)
