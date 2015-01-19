@@ -35,14 +35,13 @@ while True:
         subreddit = r.get_subreddit(subname)
         print placeholders[subcount]
         firstloop = True
-        for submission in subreddit.get_new(limit=5, place_holder=placeholders[subcount]):
-# circumvents inclusive place_holder issue. fix later
-            #if submission.id != placeholders[subcount]:
-            username = submission.author
-            f.write(str(username) + '\n')
+        for submission in subreddit.get_new(limit=25, place_holder=placeholders[subcount]):
             if firstloop:
                 placeholders[subcount] = submission.id
                 firstloop = False
+            else:
+                username = submission.author
+                f.write(str(username) + '\n')
         subcount += 1
     f.close()
     print placeholders
