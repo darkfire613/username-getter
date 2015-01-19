@@ -3,7 +3,7 @@
 # Owen Monsma darkfire613@icloud.com
 # January 18, 2015
 
-import enchant
+# import enchant
 
 # functions
 
@@ -11,9 +11,13 @@ def HasNumbers (inputstring):
     return any (char.isdigit() for char in inputstring)
 
 def CheckIfWord (inputstring):
-    # TODO: check if string is a word
+    # TODO: check if string is a word using enchant
     return False
 
+def FlipWord (word):
+    # why does this flip a string? I dont know. I hate python.
+    word = word[::-1]
+    return word
 
 # load list
 userlist = []

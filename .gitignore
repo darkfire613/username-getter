@@ -1,7 +1,10 @@
 #specific files
 sublist
 userlist
-userlist_backup
+passedusers
+
+#test files
+*_test.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
