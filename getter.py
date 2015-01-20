@@ -7,7 +7,7 @@ import praw
 import time
 
 # initializes reddit api stuff
-user_agent = ("username getter 0.2 by /u/darkfire613 "
+user_agent = ("username getter 1.0 by /u/darkfire613 "
               "https://github.com/darkfire613/username-getter")
 r = praw.Reddit(user_agent = user_agent)
 
@@ -35,10 +35,11 @@ while True:
         subreddit = r.get_subreddit(subname)
         print placeholders[subcount]
         firstloop = True
-        for submission in subreddit.get_new(limit=25, place_holder=placeholders[subcount]):
+        for submission in subreddit.get_new(limit=50, place_holder=placeholders[subcount]):
             if firstloop:
                 placeholders[subcount] = submission.id
                 firstloop = False
+# workaround for inclusive placeholder. Fix later.
             else:
                 username = submission.author
                 f.write(str(username) + '\n')
@@ -46,4 +47,4 @@ while True:
     f.close()
     print placeholders
     #break
-    time.sleep(5)
+    time.sleep(600)

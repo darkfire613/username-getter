@@ -41,5 +41,9 @@ for user in userlist:
     if not HasNumbers(user):
         passedusers.append(user)
 
+with open('passedusers', 'a') as file:
+    for name in passedusers:
+        file.write(name + '\n')
+
 print '\nafter:'
 print passedusers
