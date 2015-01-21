@@ -3,16 +3,30 @@
 # Owen Monsma darkfire613@icloud.com
 # January 18, 2015
 
-# import enchant
+import enchant
 
 # functions
 
 def HasNumbers (inputstring):
     return any (char.isdigit() for char in inputstring)
 
-def CheckIfWord (inputstring):
+def IsWord (inputstring):
+    isWord = False
+    languagelist = []
+    with open ('languagelist') as file:
+        for line in file:
+            languagelist.append(line)
+    file.close()
+    languagelist = [x.strip() for x in languagelist]
+
+    for language in languagelist:
+        d = enchant.Dict(language)
+        if d.check(inputstring):
+            print language
+            isWord = True
+
     # TODO: check if string is a word using enchant
-    return False
+    return isWord
 
 def FlipWord (word):
     # why does this flip a string? I dont know. I hate python.
@@ -29,21 +43,20 @@ file.close()
 # strip newlines from list
 userlist = [x.strip() for x in userlist]
 
-print '\nbefore:'
-print userlist
-
 # passedusers stores all the usernames that pass the check
 passedusers = []
 
 # main loop
+
+# removes if it has a number
 for user in userlist:
     print 'checking: ' + user
-    if not HasNumbers(user):
+    checkname = user.capitalize()
+    backword = FlipWord(user)
+    backword = backword.capitalize()
+    if IsWord(checkname) or IsWord(backword) and not HasNumbers(checkname):
         passedusers.append(user)
 
 with open('passedusers', 'a') as file:
     for name in passedusers:
         file.write(name + '\n')
-
-print '\nafter:'
-print passedusers
