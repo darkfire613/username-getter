@@ -23,13 +23,11 @@ def IsWord (inputstring):
         d = enchant.Dict(language)
         if d.check(inputstring):
             print language
-            isWord = True
-
-    # TODO: check if string is a word using enchant
+            isWord = Truee 
     return isWord
 
 def FlipWord (word):
-    # why does this flip a string? I dont know. I hate python.
+    # string slicing is stupid. python is stupid
     word = word[::-1]
     return word
 
